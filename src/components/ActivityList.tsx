@@ -1,28 +1,32 @@
-import { useMemo, Dispatch } from "react"
-import { Activity } from "../types"
-import { categories } from "../data/categories"
+// import { useMemo } from "react"
+// import { Activity } from "../types"
+// import { categories } from "../data/categories"
 import { PencilSquareIcon, XCircleIcon } from '@heroicons/react/24/outline'
-import { ActivityActions } from "../reducers/activity-reducer"
+// import { ActivityActions } from "../reducers/activity-reducer"
+import { useActivity } from "../hooks/useActivity"
 
 
-type ActivityListProps = {
-    activities: Activity[]
-    dispatch: Dispatch<ActivityActions>
-}
+// type ActivityListProps = {
+//     activities: Activity[]
+//     dispatch: Dispatch<ActivityActions>
+// }
 
-const ActivityList = ({activities, dispatch} : ActivityListProps) => {
+// const ActivityList = ({activities, dispatch} : ActivityListProps) => {
+const ActivityList = () => {
+    const { state: {activities}, dispatch, isEmptyActivities, categoryName } = useActivity()
 
-    const categoryName = useMemo(() => 
-        (category : Activity['category']) => categories.map( cat =>  cat.id === category ? cat.name : "")        
-    , [activities])
-
-    // para que funcione el console.log se debe llamar la variable en algun lado del html
     // const categoryName = useMemo(() => 
-    //     (category : Activity['category']) =>      
-    //     console.log(category)     
+    //     (category : Activity['category']) => categories.map( cat =>  cat.id === category ? cat.name : "")        
     // , [activities])
 
-    const isEmptyActivities =  useMemo(() => activities.length === 0, [activities])
+    // // para que funcione el console.log se debe llamar la variable en algun lado del html
+    // // const categoryName = useMemo(() => 
+    // //     (category : Activity['category']) =>      
+    // //     console.log(category)     
+    // // , [activities])
+
+    // const isEmptyActivities =  useMemo(() => activities.length === 0, [activities])
+
 
     // console.log('activities', activities)
     // console.log('categoryName', categoryName(2))

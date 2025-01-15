@@ -1,18 +1,23 @@
-import { useMemo } from "react"
-import { Activity } from "../types"
+// import { useMemo } from "react"
+// import { Activity } from "../types"
 import CaloriesDisplay from "./CaloriesDisplay"
+import { useActivity } from "../hooks/useActivity"
 
-type CalorieTrackerProps = {
-    activities: Activity[]
-}
+// type CalorieTrackerProps = {
+//     activities: Activity[]
+// }
 
-export default function CalorieTracker({activities} : CalorieTrackerProps) {
+// export default function CalorieTracker({activities} : CalorieTrackerProps) {
+export default function CalorieTracker() {
+    
+    // const { state: {activities} } = useActivity()
+    const { calorieCosumid, calorieBurned, netCalories } = useActivity()
 
-    const calorieCosumid = useMemo(() => activities.reduce((total, activity) => activity.category === 1 ? total + activity.calories : total, 0) , [activities])
 
-    const calorieBurned = useMemo(() => activities.reduce((total, activity) => activity.category === 2 ? total + activity.calories : total, 0) , [activities])
+    // const calorieCosumid = useMemo(() => activities.reduce((total, activity) => activity.category === 1 ? total + activity.calories : total, 0) , [activities])
+    // const calorieBurned = useMemo(() => activities.reduce((total, activity) => activity.category === 2 ? total + activity.calories : total, 0) , [activities])
+    // const netCalories = useMemo(() => calorieCosumid - calorieBurned , [activities])
 
-    const netCalories = useMemo(() => calorieCosumid - calorieBurned , [activities])
   return (
     <>
     <h2 className="text-4xl font-black text-white text-center">Resumen de Calorias</h2>
